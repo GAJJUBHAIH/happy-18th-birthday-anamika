@@ -204,6 +204,38 @@
             background: linear-gradient(135deg, #d81b60, #ad1457);
         }
 
+        .shake {
+            animation: shakeAnim 0.5s ease-in-out;
+        }
+
+        @keyframes shakeAnim {
+            0%, 100% { transform: translateX(0); }
+            20% { transform: translateX(-10px); }
+            40% { transform: translateX(10px); }
+            60% { transform: translateX(-8px); }
+            80% { transform: translateX(8px); }
+        }
+
+        #lockToast {
+            margin-top: 15px;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: #c2185b;
+            background: #ffebee;
+            border: 2px solid #f48fb1;
+            padding: 10px 20px;
+            border-radius: 30px;
+            display: none;
+            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.2);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         @media (max-width: 600px) {
             .countdown-title { font-size: 40px; }
             .timer-num { font-size: 34px; }
@@ -694,12 +726,13 @@
             </div>
 
             <div style="margin-top: 15px;">
-                <button class="preview-btn" onclick="unlockSurprise()">
-                    ✨ Open Surprise Now ✨
+                <button class="preview-btn" id="openBtn" onclick="handleButtonClick()">
+                    🔒 Tap to Unlock 🎀
                 </button>
+                <div id="lockToast"></div>
             </div>
             <p style="font-size: 13px; color: #ad1457; margin-top: 15px; opacity: 0.85;">
-                🌸 Automatically unlocks when the clock strikes 12:00 AM!
+                🌸 Patience gorgeous! Unlocks strictly at 12:00 AM Midnight! ✨
             </p>
         </div>
     </div>
@@ -1017,6 +1050,35 @@
 
         const targetTime = getNextMidnight().getTime();
         let surpriseUnlocked = false;
+
+        function handleButtonClick() {
+            const now = new Date().getTime();
+            if (now >= targetTime) {
+                unlockSurprise();
+            } else {
+                // Deny opening before timer ends with cute message & wobble
+                const btn = document.getElementById('openBtn');
+                const toast = document.getElementById('lockToast');
+                
+                btn.classList.remove('shake');
+                void btn.offsetWidth; // trigger reflow
+                btn.classList.add('shake');
+
+                const playfulMessages = [
+                    "🚫 Not yet Anamika! Keep patience for your 18th magic! ⏳💖",
+                    "🔒 Shh! The surprise is strictly locked until Midnight! 🎀✨",
+                    "🌸 Nice try bestie! Only openable when the clock hits 12:00 AM! 🎂",
+                    "✨ Good things come to those who wait! Countdown is ticking! 💕"
+                ];
+                const msg = playfulMessages[Math.floor(Math.random() * playfulMessages.length)];
+                toast.textContent = msg;
+                toast.style.display = "inline-block";
+
+                setTimeout(() => {
+                    btn.classList.remove('shake');
+                }, 500);
+            }
+        }
 
         function unlockSurprise() {
             if (surpriseUnlocked) return;
