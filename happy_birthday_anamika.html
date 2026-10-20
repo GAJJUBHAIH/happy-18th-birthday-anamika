@@ -1336,50 +1336,105 @@
             }
         }
 
-        // Bilingual Hindi/English Lyrics Pool
-        const lyricsPool = [
-            { en: "Happy Birthday To You Ji!", hi: "हैप्पी बर्थडे टू यू जी! 🎂" },
-            { en: "Baar Baar Din Yeh Aaye! 🎵", hi: "बार बार दिन ये आये! 🌸" },
-            { en: "Baar Baar Dil Yeh Gaaye! 💖", hi: "बार बार दिल ये गाये! 💃" },
-            { en: "Tum Jiyo Hazaaron Saal! 🌟", hi: "तुम जियो हज़ारों साल! ✨" },
-            { en: "Yeh Meri Hai Aarzoo! 👑", hi: "ये मेरी है आरज़ू! 🎀" },
-            { en: "Happy 18th Birthday Anamika! 🥳", hi: "हैप्पी १८वां बर्थडे अनामिका! 🌹" },
-            { en: "Party Toh Banti Hai Boss! 🥂", hi: "पार्टी तो बनती है बॉस! 🎉" },
-            { en: "Cake Katne Ka Time Aaya! 🍰", hi: "केक काटने का टाइम आया! 🎂" },
-            { en: "Celebrate Good Times! 💫", hi: "खुशियाँ मनाओ दिन आया! 🦋" },
-            { en: "Dance With Me Bestie! 👭", hi: "नाचो गाओ धूम मचाओ! 👯‍♀️" },
-            { en: "Queen Of The Day! 👸", hi: "आज के दिन की मल्लिका! 👑" },
-            { en: "Best Wishes From Nidhi! 💕", hi: "निधि की तरफ से ढेरों दुआएं! 💌" }
+        // Bilingual Hindi/English Exact Funzoa Song Lyrics
+        const songLyrics = [
+            { time: 1, hi: "हैप्पी बर्थडे टू यू जी! 🎂", en: "Happy Birthday To You Ji!" },
+            { time: 4, hi: "केक शेक है तो फिर बुलाओ जी! 🍰", en: "Cake shake hai toh phir bulao ji!" },
+            { time: 8, hi: "ऐसे ही तुम बुद्धे होते रहोगे! 😂", en: "Aise hi tum buddhe hote rahoge!" },
+            { time: 12, hi: "हमको उससे क्या मतलब बताओ जी! 😜", en: "Humko usse kya matlab batao ji!" },
+            { time: 16, hi: "हैप्पी बर्थडे टू यू, हाँजी! 🥳", en: "Happy birthday to you, haanji!" },
+            { time: 20, hi: "तो इसपे इतने खुश क्यों हो अन्वै! 🤷‍♀️", en: "Toh ispe itne khush kyun ho avai!" },
+            { time: 24, hi: "तुम तो बरसों पहले ही निकल चुके हो! 🚀", en: "Tum toh barso pehle hi nikal chuke ho!" },
+            { time: 28, hi: "तो बर्थडे वाला नाटक ये क्यों है भाई! 🎭", en: "Toh birthday wala natak ye kyun hai bhai!" },
+            { time: 32, hi: "कैंडल शैन्डल फूँक से बुझवाके! 🕯️", en: "Candle shandle phoonk se bujhwake!" },
+            { time: 35, hi: "बेसुरों की भीड़ फालतू में लगवाके! 🎤", en: "Besuro ki bheed faltu mein lagwake!" },
+            { time: 38, hi: "बर्थडे वाला सोंग ज़ोर-ज़ोर से गवाते हो! 🎶", en: "Birthdaywala song zor zor se gawate ho!" },
+            { time: 42, hi: "हमसे ताली-वाली की हजामत करवाते हो! 👏", en: "Humse taaliwali ka hajamat karwate ho!" },
+            { time: 46, hi: "ये सब नौटंकी फिर भी चलो झेल लें! 🍿", en: "Ye sab nautanki phir bhi chalo jhel lein!" },
+            { time: 49, hi: "केक शेक और स्टार्टर्स भर-भरके आये प्लेट में! 🍕", en: "Cake shake aur starters bhar-bharke aaye plate mein!" },
+            { time: 53, hi: "घर जाके फिर से डिनर ना मंगवाना हो! 🍔", en: "Ghar jake phir se dinner na mangwana ho!" },
+            { time: 56, hi: "चूहे ना दौड़े पेट में रात के पौने दो! 🐭", en: "Chuhe na daude pet mein raat ke paune do!" },
+            { time: 60, hi: "हैप्पी बर्थडे टू यू जी! 🌸", en: "Happy birthday to you ji!" },
+            { time: 63, hi: "सोच समझ के इनवाइट भिजवाओ जी! 💌", en: "Soch samajh ke invite bhijwao ji!" },
+            { time: 66, hi: "अगर पेटपूजा का फुल इंतज़ाम है! 🍛", en: "Agar petpooja ka full intezaam hai!" },
+            { time: 70, hi: "तो ही न्यौता कन्सिडर करेंगे जी! 😋", en: "To hi nyota consider karenge ji!" },
+            { time: 74, hi: "हैप्पी बर्थडे टू यू, कह दिया है जी! 💖", en: "Happy birthday to you, keh diya hai ji!" },
+            { time: 77, hi: "तुम और भी बुद्धे हो गए, ओह तेरी! 👵", en: "Tum aur bhi buddhe ho gaye, oh teri!" },
+            { time: 80, hi: "दिल छोटा ना करो, उम्र का है क्या! 👑", en: "Dil chhota na karo, umra ka hai kya!" },
+            { time: 83, hi: "बाल झड़ेंगे, दाँत गिरेंगे, वैसे ही! 🦷", en: "Baal jhadenge, daant girenge, waise hi!" },
+            { time: 88, hi: "देखो कोई पुराना गिफ्ट हम जो ढूँढ पायें! 🎁", en: "Dekho koi purana gift hum jo dhoondh paye!" },
+            { time: 92, hi: "एक्सपेक्ट तभी करना हम कुछ हाथ में लेके आयें! 🛍️", en: "Expect tabhi karna hum kuch haath mein leke aaye!" },
+            { time: 96, hi: "यू आर ऑन माय फ्रेंड लिस्ट, ये नहीं मज़ाक है! 👭", en: "You are on my friend list, ye nahi mazaak hai!" },
+            { time: 100, hi: "हम टाइम निकाल के आ गए तो बड़ी बात है! ⏰", en: "Hum time nikaalke aa gaye toh badi baat hai!" },
+            { time: 104, hi: "वैसे सच बताओ तुम अब कितने साल के हुए! 🤫", en: "Waise sach batao tum ab kitne saal ke hue!" },
+            { time: 108, hi: "हमको क्या पड़ी है, हम किसी को ना बतायें! 🤐", en: "Humko kya padi hai, hum kisi ko na batayein!" },
+            { time: 112, hi: "मुँह ना बिगाड़ो आज तुम्हारा बर्थडे है! 🍰", en: "Muh na bigado aaj tumhara birthday hai!" },
+            { time: 116, hi: "तुम अकेले हो नहीं, यहाँ और भी बुद्धे हैं! 🥳", en: "Tum akele ho nahi, yahan aur bhi buddhe hai!" },
+            { time: 120, hi: "सोच-सोच के और बी.पी. ना बढ़ाओ! 💓", en: "Soch soch ke aur B.P. na badhao!" },
+            { time: 123, hi: "सिंग हैप्पी बर्थडे टू मी! 🎵", en: "Sing happy birthday to me!" },
+            { time: 126, hi: "बत्तीसी चमका के चिल्ला कर गाओ! 😁", en: "Battisi chamkake chillakar gao!" },
+            { time: 130, hi: "हैप्पी बर्थडे टू मी! 🌟", en: "Happy birthday to me!" },
+            { time: 134, hi: "अब पैसे वैसे खर्चे हो और केक भी मंगवाए हो! 💸", en: "Ab paise waise kharche ho aur cake bhi mangwaye ho!" },
+            { time: 139, hi: "तो पार्टी खत्म होने के बाद सर पटकना जी! 🤦‍♀️", en: "Toh party khatam hone ke baad sar patakna ji!" },
+            { time: 144, hi: "हैप्पी बर्थडे टू यू जी! 🎀", en: "Happy birthday to you ji!" },
+            { time: 147, hi: "कैसी लगी तुमको मेरी फिलोसोफी! 💡", en: "Kaisi lagi tumko meri philosophy!" },
+            { time: 151, hi: "धरती पे बोझ तुम बने हो जी! 🌍", en: "Dharti pe bojh tum bane ho ji!" },
+            { time: 155, hi: "हैप्पी बर्थडे टू यू, बट यू सी! 🌸", en: "Happy birthday to you, but you see!" },
+            { time: 158, hi: "उम्र छुपाने का नाम है ज़िन्दगी! 💖", en: "Umra chupane ka naam hai zindagi!" },
+            { time: 162, hi: "मुझको बुलाओ ना बुलाओ पर बताना! 💌", en: "Mujhko bulao na bulao par batana!" },
+            { time: 165, hi: "ये बर्थडे वाला सोंग हिंदी में तुमको कैसा लगा है जी! 💃", en: "Ye birthdaywala song hindi mein tumko kaisa laga hai ji!" }
         ];
 
-        function spawnFloatingLyric() {
-            if (audio.paused) return; // Only spawn while song is jamming!
+        let lastSpawnedIndex = -1;
 
-            const item = lyricsPool[Math.floor(Math.random() * lyricsPool.length)];
+        function showLyricPopup(item) {
             const bubble = document.createElement('div');
             bubble.className = 'floating-lyric-tag';
 
-            // Random positions on screen
-            const randomX = Math.floor(Math.random() * (window.innerWidth - 260)) + 30;
-            const randomY = Math.floor(Math.random() * (window.innerHeight - 200)) + 80;
+            // Random positions on screen (any position!)
+            const maxW = Math.max(window.innerWidth - 320, 20);
+            const maxH = Math.max(window.innerHeight - 180, 50);
+            const randomX = Math.floor(Math.random() * maxW) + 20;
+            const randomY = Math.floor(Math.random() * maxH) + 60;
 
             bubble.style.left = randomX + 'px';
             bubble.style.top = randomY + 'px';
 
             bubble.innerHTML = `
-                <span>${item.en}</span>
-                <span class="hindi-txt">${item.hi}</span>
+                <span class="hindi-txt" style="font-size: 19px; font-weight: bold; color: #ad1457;">${item.hi}</span>
+                <span style="font-size: 15px; color: #6a1b4d; font-family: 'Quicksand', sans-serif; font-weight: 600;">${item.en}</span>
             `;
 
             document.body.appendChild(bubble);
 
             setTimeout(() => {
                 bubble.remove();
-            }, 4600);
+            }, 4500);
         }
 
-        // Spawn lyrics continuously while song plays
-        setInterval(spawnFloatingLyric, 1800);
+        // Track audio current time to pop exact lyrics at their real song moment
+        audio.addEventListener('timeupdate', function() {
+            if (audio.paused) return;
+            const curTime = audio.currentTime;
+
+            for (let i = songLyrics.length - 1; i >= 0; i--) {
+                if (curTime >= songLyrics[i].time) {
+                    if (lastSpawnedIndex !== i) {
+                        lastSpawnedIndex = i;
+                        showLyricPopup(songLyrics[i]);
+                    }
+                    break;
+                }
+            }
+        });
+
+        // Also spawn spontaneous random lyrics throughout playback
+        setInterval(function() {
+            if (!audio.paused && surpriseUnlocked) {
+                const randomItem = songLyrics[Math.floor(Math.random() * songLyrics.length)];
+                showLyricPopup(randomItem);
+            }
+        }, 3200);
     </script>
 
 </body>
