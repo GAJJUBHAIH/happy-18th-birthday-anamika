@@ -244,6 +244,122 @@
             .countdown-card { padding: 25px 15px; }
         }
 
+        /* ===== BEAT GLITCH EFFECT ===== */
+        .glitch-beat {
+            animation: glitchEffect 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) both !important;
+        }
+
+        @keyframes glitchEffect {
+            0% {
+                transform: translate(0);
+                filter: none;
+            }
+            25% {
+                transform: translate(-3px, 2px) skewX(-1.5deg);
+                filter: drop-shadow(2px 0 #ff4081) drop-shadow(-2px 0 #00e5ff);
+            }
+            50% {
+                transform: translate(3px, -2px) skewX(1.5deg);
+                filter: drop-shadow(-2px 0 #ff4081) drop-shadow(2px 0 #ffe082);
+            }
+            75% {
+                transform: translate(-2px, -1px);
+                filter: drop-shadow(1px 0 #e91e63);
+            }
+            100% {
+                transform: translate(0);
+                filter: none;
+            }
+        }
+
+        /* ===== FLOATING RANDOM LYRICS ===== */
+        .floating-lyric-tag {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(8px);
+            border: 2px solid #ff4081;
+            padding: 10px 18px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(233, 30, 99, 0.35);
+            font-family: 'Pacifico', cursive;
+            color: #880e4f;
+            font-size: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            animation: popFly 4.5s ease-out forwards;
+        }
+
+        .floating-lyric-tag .hindi-txt {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: #d81b60;
+        }
+
+        @keyframes popFly {
+            0% {
+                opacity: 0;
+                transform: scale(0.4) translateY(20px) rotate(-6deg);
+            }
+            15% {
+                opacity: 1;
+                transform: scale(1.08) translateY(0) rotate(2deg);
+            }
+            30% {
+                transform: scale(1) translateY(-10px) rotate(-2deg);
+            }
+            80% {
+                opacity: 0.95;
+                transform: scale(1) translateY(-30px);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.8) translateY(-60px);
+            }
+        }
+
+        /* Music Floating Control */
+        #musicPlayerControl {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 999999;
+            background: linear-gradient(135deg, #ec407a, #d81b60);
+            color: white;
+            border-radius: 50px;
+            padding: 12px 22px;
+            box-shadow: 0 8px 30px rgba(233, 30, 99, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            border: 2px solid #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        #musicPlayerControl:hover {
+            transform: scale(1.08);
+            box-shadow: 0 12px 35px rgba(233, 30, 99, 0.7);
+        }
+
+        .music-disc {
+            font-size: 22px;
+            display: inline-block;
+            animation: spinDisc 3s linear infinite;
+        }
+
+        @keyframes spinDisc {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
         /* ===== BANNER IMAGE ===== */
         .banner-section {
             border-radius: 25px;
@@ -699,6 +815,15 @@
 </head>
 <body>
 
+    <!-- Audio Element -->
+    <audio id="birthdayAudio" src="birthday_song.mp3" preload="auto" loop></audio>
+
+    <!-- Music Control Floating Button -->
+    <div id="musicPlayerControl" onclick="toggleMusic()">
+        <span class="music-disc" id="musicDiscIcon">🎵</span>
+        <span id="musicBtnText">Play Music 🎶</span>
+    </div>
+
     <!-- Countdown Overlay -->
     <div id="countdownOverlay">
         <div class="countdown-card">
@@ -1092,6 +1217,8 @@
             for (let i = 0; i < 80; i++) {
                 setTimeout(createConfetti, i * 40);
             }
+            // Auto start birthday song upon unlock!
+            playSong();
         }
 
         function updateCountdown() {
@@ -1117,6 +1244,142 @@
 
         setInterval(updateCountdown, 40);
         updateCountdown();
+
+        // ===== AUDIO & BEAT GLITCH & FLOATING LYRICS =====
+        const audio = document.getElementById('birthdayAudio');
+        const discIcon = document.getElementById('musicDiscIcon');
+        const musicBtnText = document.getElementById('musicBtnText');
+        let audioCtx, analyser, dataArray, isAudioInitialized = false;
+
+        function initAudioAnalyzer() {
+            if (isAudioInitialized) return;
+            try {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                analyser = audioCtx.createAnalyser();
+                analyser.fftSize = 64;
+                const source = audioCtx.createMediaElementSource(audio);
+                source.connect(analyser);
+                analyser.connect(audioCtx.destination);
+                dataArray = new Uint8Array(analyser.frequencyBinCount);
+                isAudioInitialized = true;
+                detectBeat();
+            } catch (e) {
+                console.log("Web Audio initialized fallback", e);
+            }
+        }
+
+        function playSong() {
+            if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            initAudioAnalyzer();
+            audio.play().then(() => {
+                discIcon.style.animationPlayState = 'running';
+                musicBtnText.textContent = "Playing 🎵";
+            }).catch(e => {
+                console.log("Autoplay was prevented, will play on user interaction:", e);
+            });
+        }
+
+        function toggleMusic() {
+            if (audio.paused) {
+                playSong();
+            } else {
+                audio.pause();
+                discIcon.style.animationPlayState = 'paused';
+                musicBtnText.textContent = "Play Music 🎶";
+            }
+        }
+
+        // Automatic repeat loop guarantee
+        audio.addEventListener('ended', function() {
+            audio.currentTime = 0;
+            audio.play();
+        });
+
+        // Trigger audio playback seamlessly on any user interaction
+        document.body.addEventListener('click', function() {
+            if (audio.paused && surpriseUnlocked) {
+                playSong();
+            }
+        }, { once: true });
+
+        // Beat Detection Glitch on Container
+        const mainContainer = document.querySelector('.container');
+        let glitchCooldown = false;
+
+        function detectBeat() {
+            requestAnimationFrame(detectBeat);
+            if (!analyser || audio.paused) return;
+
+            analyser.getByteFrequencyData(dataArray);
+
+            // Lower bass frequencies (bass kick/drop)
+            let bassEnergy = 0;
+            for (let i = 0; i < 4; i++) {
+                bassEnergy += dataArray[i];
+            }
+            bassEnergy = bassEnergy / 4;
+
+            // Trigger glitch if heavy beat detected
+            if (bassEnergy > 195 && !glitchCooldown) {
+                glitchCooldown = true;
+                if (mainContainer) {
+                    mainContainer.classList.add('glitch-beat');
+                    setTimeout(() => {
+                        mainContainer.classList.remove('glitch-beat');
+                    }, 140);
+                }
+                setTimeout(() => {
+                    glitchCooldown = false;
+                }, 220);
+            }
+        }
+
+        // Bilingual Hindi/English Lyrics Pool
+        const lyricsPool = [
+            { en: "Happy Birthday To You Ji!", hi: "हैप्पी बर्थडे टू यू जी! 🎂" },
+            { en: "Baar Baar Din Yeh Aaye! 🎵", hi: "बार बार दिन ये आये! 🌸" },
+            { en: "Baar Baar Dil Yeh Gaaye! 💖", hi: "बार बार दिल ये गाये! 💃" },
+            { en: "Tum Jiyo Hazaaron Saal! 🌟", hi: "तुम जियो हज़ारों साल! ✨" },
+            { en: "Yeh Meri Hai Aarzoo! 👑", hi: "ये मेरी है आरज़ू! 🎀" },
+            { en: "Happy 18th Birthday Anamika! 🥳", hi: "हैप्पी १८वां बर्थडे अनामिका! 🌹" },
+            { en: "Party Toh Banti Hai Boss! 🥂", hi: "पार्टी तो बनती है बॉस! 🎉" },
+            { en: "Cake Katne Ka Time Aaya! 🍰", hi: "केक काटने का टाइम आया! 🎂" },
+            { en: "Celebrate Good Times! 💫", hi: "खुशियाँ मनाओ दिन आया! 🦋" },
+            { en: "Dance With Me Bestie! 👭", hi: "नाचो गाओ धूम मचाओ! 👯‍♀️" },
+            { en: "Queen Of The Day! 👸", hi: "आज के दिन की मल्लिका! 👑" },
+            { en: "Best Wishes From Nidhi! 💕", hi: "निधि की तरफ से ढेरों दुआएं! 💌" }
+        ];
+
+        function spawnFloatingLyric() {
+            if (audio.paused) return; // Only spawn while song is jamming!
+
+            const item = lyricsPool[Math.floor(Math.random() * lyricsPool.length)];
+            const bubble = document.createElement('div');
+            bubble.className = 'floating-lyric-tag';
+
+            // Random positions on screen
+            const randomX = Math.floor(Math.random() * (window.innerWidth - 260)) + 30;
+            const randomY = Math.floor(Math.random() * (window.innerHeight - 200)) + 80;
+
+            bubble.style.left = randomX + 'px';
+            bubble.style.top = randomY + 'px';
+
+            bubble.innerHTML = `
+                <span>${item.en}</span>
+                <span class="hindi-txt">${item.hi}</span>
+            `;
+
+            document.body.appendChild(bubble);
+
+            setTimeout(() => {
+                bubble.remove();
+            }, 4600);
+        }
+
+        // Spawn lyrics continuously while song plays
+        setInterval(spawnFloatingLyric, 1800);
     </script>
 
 </body>
