@@ -75,6 +75,143 @@
             z-index: 2;
         }
 
+        /* ===== COUNTDOWN OVERLAY ===== */
+        #countdownOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, #ffebee 0%, #fce4ec 50%, #f8bbd0 100%);
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+            transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #countdownOverlay.hidden {
+            opacity: 0;
+            transform: scale(1.08);
+            pointer-events: none;
+        }
+
+        .countdown-card {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(15px);
+            border: 3px solid #f48fb1;
+            box-shadow: 0 20px 60px rgba(233, 30, 99, 0.25), inset 0 0 20px rgba(255, 255, 255, 0.8);
+            border-radius: 35px;
+            padding: 40px 30px;
+            max-width: 650px;
+            width: 90%;
+            position: relative;
+            animation: cardFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .countdown-card .envelope-icon {
+            font-size: 55px;
+            animation: heartPulse 1.6s ease infinite;
+            display: inline-block;
+        }
+
+        @keyframes heartPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        .countdown-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 52px;
+            color: #ad1457;
+            margin: 10px 0 5px;
+        }
+
+        .countdown-sub {
+            font-size: 18px;
+            font-family: 'Quicksand', sans-serif;
+            color: #880e4f;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .timer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .timer-box {
+            background: linear-gradient(145deg, #ffffff, #fce4ec);
+            border: 2px solid #f8bbd0;
+            border-radius: 20px;
+            padding: 18px 10px;
+            box-shadow: 0 8px 25px rgba(233, 30, 99, 0.12);
+            transition: transform 0.3s ease;
+        }
+
+        .timer-box:hover {
+            transform: translateY(-4px);
+            border-color: #ec407a;
+        }
+
+        .timer-num {
+            font-family: 'Dancing Script', cursive;
+            font-size: 44px;
+            font-weight: 700;
+            color: #c2185b;
+            line-height: 1;
+        }
+
+        .timer-lbl {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #ad1457;
+            font-weight: 700;
+            margin-top: 8px;
+        }
+
+        .preview-btn {
+            background: linear-gradient(135deg, #ec407a, #d81b60);
+            color: white;
+            border: none;
+            padding: 14px 34px;
+            border-radius: 50px;
+            font-size: 17px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(236, 64, 122, 0.4);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .preview-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 30px rgba(236, 64, 122, 0.6);
+            background: linear-gradient(135deg, #d81b60, #ad1457);
+        }
+
+        @media (max-width: 600px) {
+            .countdown-title { font-size: 40px; }
+            .timer-num { font-size: 34px; }
+            .timer-grid { gap: 8px; }
+            .timer-box { padding: 14px 6px; }
+            .countdown-card { padding: 25px 15px; }
+        }
+
         /* ===== BANNER IMAGE ===== */
         .banner-section {
             border-radius: 25px;
@@ -530,6 +667,43 @@
 </head>
 <body>
 
+    <!-- Countdown Overlay -->
+    <div id="countdownOverlay">
+        <div class="countdown-card">
+            <div class="envelope-icon">💌</div>
+            <h1 class="countdown-title">A Special Surprise For Anamika 🎀</h1>
+            <p class="countdown-sub">Sent with love by <strong>Nidhi</strong> 🌸 • Unlocking at Midnight!</p>
+            
+            <div class="timer-grid">
+                <div class="timer-box">
+                    <div class="timer-num" id="tHours">00</div>
+                    <div class="timer-lbl">Hours</div>
+                </div>
+                <div class="timer-box">
+                    <div class="timer-num" id="tMinutes">00</div>
+                    <div class="timer-lbl">Minutes</div>
+                </div>
+                <div class="timer-box">
+                    <div class="timer-num" id="tSeconds">00</div>
+                    <div class="timer-lbl">Seconds</div>
+                </div>
+                <div class="timer-box">
+                    <div class="timer-num" id="tMillis">00</div>
+                    <div class="timer-lbl">Milli</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 15px;">
+                <button class="preview-btn" onclick="unlockSurprise()">
+                    ✨ Open Surprise Now ✨
+                </button>
+            </div>
+            <p style="font-size: 13px; color: #ad1457; margin-top: 15px; opacity: 0.85;">
+                🌸 Automatically unlocks when the clock strikes 12:00 AM!
+            </p>
+        </div>
+    </div>
+
     <!-- Floating Hearts Background -->
     <div class="hearts-container" id="heartsContainer"></div>
 
@@ -832,6 +1006,55 @@
 
         for (let i = 0; i < 50; i++) setTimeout(createConfetti, i * 100);
         setInterval(createConfetti, 300);
+
+        // ===== COUNTDOWN TIMER LOGIC =====
+        function getNextMidnight() {
+            const now = new Date();
+            const midnight = new Date(now);
+            midnight.setHours(24, 0, 0, 0); // Next 12:00 AM
+            return midnight;
+        }
+
+        const targetTime = getNextMidnight().getTime();
+        let surpriseUnlocked = false;
+
+        function unlockSurprise() {
+            if (surpriseUnlocked) return;
+            surpriseUnlocked = true;
+            const overlay = document.getElementById('countdownOverlay');
+            if (overlay) {
+                overlay.classList.add('hidden');
+                setTimeout(() => overlay.remove(), 1000);
+            }
+            // Trigger celebration confetti blast
+            for (let i = 0; i < 80; i++) {
+                setTimeout(createConfetti, i * 40);
+            }
+        }
+
+        function updateCountdown() {
+            if (surpriseUnlocked) return;
+            const now = new Date().getTime();
+            const diff = targetTime - now;
+
+            if (diff <= 0) {
+                unlockSurprise();
+                return;
+            }
+
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            const millis = Math.floor((diff % 1000) / 10);
+
+            document.getElementById('tHours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('tMinutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('tSeconds').textContent = String(seconds).padStart(2, '0');
+            document.getElementById('tMillis').textContent = String(millis).padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 40);
+        updateCountdown();
     </script>
 
 </body>
