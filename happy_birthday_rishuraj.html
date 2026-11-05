@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎀 Happy Birthday Rishuraj! 🎀</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Quicksand:wght@300;400;500;600;700&family=Great+Vibes&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #fce4ec, #f8bbd0, #f48fb1, #fce4ec);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: #880e4f;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating Hearts */
+        .hearts-container {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 20px;
+            animation: floatUp linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) rotate(0deg) scale(0.5); opacity: 0; }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% { transform: translateY(-10vh) rotate(720deg) scale(1.2); opacity: 0; }
+        }
+
+        .sparkle {
+            position: fixed;
+            width: 6px; height: 6px;
+            background: radial-gradient(circle, #fff, #ff69b4);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            animation: sparkleAnim 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkleAnim {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ===== COUNTDOWN OVERLAY (DISABLED) ===== */
+        #countdownOverlay {
+            display: none !important;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, #ffebee 0%, #fce4ec 50%, #f8bbd0 100%);
+            z-index: 99999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+            transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #countdownOverlay.hidden {
+            opacity: 0;
+            transform: scale(1.08);
+            pointer-events: none;
+        }
+
+        .countdown-card {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(15px);
+            border: 3px solid #f48fb1;
+            box-shadow: 0 20px 60px rgba(233, 30, 99, 0.25), inset 0 0 20px rgba(255, 255, 255, 0.8);
+            border-radius: 35px;
+            padding: 40px 30px;
+            max-width: 650px;
+            width: 90%;
+            position: relative;
+            animation: cardFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .countdown-card .envelope-icon {
+            font-size: 55px;
+            animation: heartPulse 1.6s ease infinite;
+            display: inline-block;
+        }
+
+        @keyframes heartPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        .countdown-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 52px;
+            color: #ad1457;
+            margin: 10px 0 5px;
+        }
+
+        .countdown-sub {
+            font-size: 18px;
+            font-family: 'Quicksand', sans-serif;
+            color: #880e4f;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .timer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .timer-box {
+            background: linear-gradient(145deg, #ffffff, #fce4ec);
+            border: 2px solid #f8bbd0;
+            border-radius: 20px;
+            padding: 18px 10px;
+            box-shadow: 0 8px 25px rgba(233, 30, 99, 0.12);
+            transition: transform 0.3s ease;
+        }
+
+        .timer-box:hover {
+            transform: translateY(-4px);
+            border-color: #ec407a;
+        }
+
+        .timer-num {
+            font-family: 'Dancing Script', cursive;
+            font-size: 44px;
+            font-weight: 700;
+            color: #c2185b;
+            line-height: 1;
+        }
+
+        .timer-lbl {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #ad1457;
+            font-weight: 700;
+            margin-top: 8px;
+        }
+
+        .preview-btn {
+            background: linear-gradient(135deg, #ec407a, #d81b60);
+            color: white;
+            border: none;
+            padding: 14px 34px;
+            border-radius: 50px;
+            font-size: 17px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(236, 64, 122, 0.4);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .preview-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 30px rgba(236, 64, 122, 0.6);
+            background: linear-gradient(135deg, #d81b60, #ad1457);
+        }
+
+        .shake {
+            animation: shakeAnim 0.5s ease-in-out;
+        }
+
+        @keyframes shakeAnim {
+            0%, 100% { transform: translateX(0); }
+            20% { transform: translateX(-10px); }
+            40% { transform: translateX(10px); }
+            60% { transform: translateX(-8px); }
+            80% { transform: translateX(8px); }
+        }
+
+        #lockToast {
+            margin-top: 15px;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: #c2185b;
+            background: #ffebee;
+            border: 2px solid #f48fb1;
+            padding: 10px 20px;
+            border-radius: 30px;
+            display: none;
+            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.2);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            .countdown-title { font-size: 40px; }
+            .timer-num { font-size: 34px; }
+            .timer-grid { gap: 8px; }
+            .timer-box { padding: 14px 6px; }
+            .countdown-card { padding: 25px 15px; }
+        }
+
+        /* ===== BEAT GLITCH EFFECT ===== */
+        .glitch-beat {
+            animation: glitchEffect 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) both !important;
+        }
+
+        @keyframes glitchEffect {
+            0% {
+                transform: translate(0);
+                filter: none;
+            }
+            25% {
+                transform: translate(-3px, 2px) skewX(-1.5deg);
+                filter: drop-shadow(2px 0 #ff4081) drop-shadow(-2px 0 #00e5ff);
+            }
+            50% {
+                transform: translate(3px, -2px) skewX(1.5deg);
+                filter: drop-shadow(-2px 0 #ff4081) drop-shadow(2px 0 #ffe082);
+            }
+            75% {
+                transform: translate(-2px, -1px);
+                filter: drop-shadow(1px 0 #e91e63);
+            }
+            100% {
+                transform: translate(0);
+                filter: none;
+            }
+        }
+
+        /* ===== FLOATING RANDOM LYRICS ===== */
+        .floating-lyric-tag {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1000000; /* Appear above both main page and waiting countdown overlay! */
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 2px solid #ff4081;
+            padding: 12px 22px;
+            border-radius: 30px;
+            box-shadow: 0 12px 35px rgba(233, 30, 99, 0.4);
+            font-family: 'Pacifico', cursive;
+            color: #880e4f;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            animation: popFly 4.5s ease-out forwards;
+            max-width: 320px;
+            text-align: center;
+        }
+
+        .floating-lyric-tag .hindi-txt {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: #d81b60;
+        }
+
+        @keyframes popFly {
+            0% {
+                opacity: 0;
+                transform: scale(0.4) translateY(20px) rotate(-6deg);
+            }
+            15% {
+                opacity: 1;
+                transform: scale(1.08) translateY(0) rotate(2deg);
+            }
+            30% {
+                transform: scale(1) translateY(-10px) rotate(-2deg);
+            }
+            80% {
+                opacity: 0.95;
+                transform: scale(1) translateY(-30px);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.8) translateY(-60px);
+            }
+        }
+
+        /* Music Floating Control */
+        #musicPlayerControl {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 999999;
+            background: linear-gradient(135deg, #ec407a, #d81b60);
+            color: white;
+            border-radius: 50px;
+            padding: 12px 22px;
+            box-shadow: 0 8px 30px rgba(233, 30, 99, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            border: 2px solid #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        #musicPlayerControl:hover {
+            transform: scale(1.08);
+            box-shadow: 0 12px 35px rgba(233, 30, 99, 0.7);
+        }
+
+        .music-disc {
+            font-size: 22px;
+            display: inline-block;
+            animation: spinDisc 3s linear infinite;
+        }
+
+        @keyframes spinDisc {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* ===== BANNER IMAGE ===== */
+        .banner-section {
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(233, 30, 99, 0.3);
+            margin-bottom: 30px;
+            border: 4px solid #f48fb1;
+        }
+
+        .banner-section img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 40px 20px 30px;
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ec407a, #f48fb1);
+            color: white;
+            padding: 8px 30px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(236, 64, 122, 0.4);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 4px 15px rgba(236, 64, 122, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 6px 25px rgba(236, 64, 122, 0.6); }
+        }
+
+        .hero h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 72px;
+            color: #ad1457;
+            text-shadow: 2px 2px 4px rgba(173, 20, 87, 0.2);
+            margin-bottom: 10px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero .name {
+            font-family: 'Pacifico', cursive;
+            font-size: 56px;
+            background: linear-gradient(135deg, #e91e63, #ff6090, #e91e63);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s linear infinite;
+            margin-bottom: 10px;
+        }
+
+        @keyframes shimmer { to { background-position: 200% center; } }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .age-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 110px; height: 110px;
+            background: linear-gradient(135deg, #f06292, #ec407a);
+            border-radius: 50%;
+            color: white;
+            font-family: 'Dancing Script', cursive;
+            font-size: 46px;
+            font-weight: 700;
+            box-shadow: 0 8px 30px rgba(240, 98, 146, 0.5), inset 0 -3px 10px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            animation: bounce 2s ease-in-out infinite;
+            position: relative;
+        }
+
+        .age-badge::after {
+            content: '✨';
+            position: absolute;
+            top: -10px; right: -10px;
+            font-size: 24px;
+            animation: spin 3s linear infinite;
+        }
+
+        .age-badge::before {
+            content: '🌸';
+            position: absolute;
+            bottom: -8px; left: -8px;
+            font-size: 20px;
+            animation: spin 4s linear infinite reverse;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        .divider {
+            text-align: center;
+            margin: 30px 0;
+            font-size: 24px;
+            letter-spacing: 8px;
+            color: #f06292;
+        }
+
+        /* Image Cards */
+        .image-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .image-card {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(233, 30, 99, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: white;
+            border: 3px solid #f8bbd0;
+        }
+
+        .image-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(233, 30, 99, 0.3);
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .image-card .caption {
+            padding: 15px;
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            font-size: 20px;
+            color: #c2185b;
+            background: linear-gradient(to bottom, #fff, #fce4ec);
+        }
+
+        .full-width-image {
+            grid-column: 1 / -1;
+        }
+
+        .full-width-image img {
+            height: 350px !important;
+        }
+
+        /* Message Cards */
+        .wish-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 40px;
+            margin: 30px 0;
+            box-shadow: 0 10px 40px rgba(233, 30, 99, 0.15);
+            border: 2px solid #f8bbd0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wish-card::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(248, 187, 208, 0.3) 0%, transparent 70%);
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        .wish-card .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .wish-card h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 36px;
+            color: #c2185b;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .wish-card p {
+            font-size: 17px;
+            line-height: 1.9;
+            color: #6a1b4d;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .wish-card .emoji-row {
+            text-align: center;
+            font-size: 30px;
+            letter-spacing: 10px;
+            margin: 15px 0;
+        }
+
+        /* Poem Section */
+        .poem-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(252,228,236,0.9));
+            border-radius: 25px;
+            padding: 40px;
+            margin: 30px 0;
+            box-shadow: 0 10px 40px rgba(233, 30, 99, 0.15);
+            border: 2px solid #f48fb1;
+            text-align: center;
+        }
+
+        .poem-card h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 40px;
+            color: #ad1457;
+            margin-bottom: 25px;
+        }
+
+        .poem-card .verse {
+            font-family: 'Dancing Script', cursive;
+            font-size: 22px;
+            color: #880e4f;
+            line-height: 2;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+
+        /* Qualities Section */
+        .qualities {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .quality-item {
+            background: rgba(255,255,255,0.8);
+            border-radius: 20px;
+            padding: 25px 15px;
+            text-align: center;
+            border: 2px solid #f8bbd0;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(233, 30, 99, 0.1);
+        }
+
+        .quality-item:hover {
+            transform: translateY(-5px);
+            border-color: #ec407a;
+            box-shadow: 0 10px 25px rgba(233, 30, 99, 0.2);
+        }
+
+        .quality-item .icon { font-size: 40px; margin-bottom: 10px; }
+
+        .quality-item .label {
+            font-family: 'Dancing Script', cursive;
+            font-size: 20px;
+            color: #c2185b;
+        }
+
+        /* Memories Section */
+        .memories {
+            background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+            border-radius: 25px;
+            padding: 40px;
+            margin: 30px 0;
+            border: 2px solid #f48fb1;
+        }
+
+        .memories h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 38px;
+            color: #ad1457;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .memory-item {
+            background: rgba(255,255,255,0.8);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-left: 4px solid #ec407a;
+            transition: transform 0.3s ease;
+        }
+
+        .memory-item:hover { transform: translateX(10px); }
+
+        .memory-item .mem-icon { font-size: 30px; flex-shrink: 0; }
+
+        .memory-item .mem-text {
+            font-size: 16px;
+            color: #6a1b4d;
+            line-height: 1.6;
+        }
+
+        /* Final Wish */
+        .final-wish {
+            text-align: center;
+            padding: 50px 30px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(252,228,236,0.9));
+            border-radius: 30px;
+            margin: 30px 0;
+            border: 3px solid #f06292;
+            box-shadow: 0 15px 50px rgba(233, 30, 99, 0.2);
+        }
+
+        .final-wish .big-heart {
+            font-size: 80px;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            15% { transform: scale(1.15); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.1); }
+        }
+
+        .final-wish h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 48px;
+            color: #ad1457;
+            margin: 20px 0;
+        }
+
+        .final-wish .from {
+            font-family: 'Pacifico', cursive;
+            font-size: 28px;
+            color: #e91e63;
+            margin-top: 25px;
+        }
+
+        .final-wish .xoxo {
+            font-family: 'Dancing Script', cursive;
+            font-size: 24px;
+            color: #f06292;
+            margin-top: 10px;
+            letter-spacing: 5px;
+        }
+
+        /* Confetti */
+        .confetti-piece {
+            position: fixed;
+            width: 10px; height: 10px;
+            top: -10px;
+            animation: confettiFall linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes confettiFall {
+            0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* Butterfly */
+        .butterfly {
+            position: fixed;
+            font-size: 28px;
+            z-index: 1;
+            animation: fly 15s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes fly {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(200px, -100px) rotate(15deg); }
+            50% { transform: translate(-100px, -200px) rotate(-10deg); }
+            75% { transform: translate(150px, -50px) rotate(20deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+        }
+
+        .crown-emoji {
+            font-size: 50px;
+            display: inline-block;
+            animation: crownFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes crownFloat {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+        }
+
+        /* Wishes List */
+        .wishes-list {
+            text-align: left;
+            font-size: 16px;
+            line-height: 2.2;
+            color: #6a1b4d;
+        }
+
+        .wishes-list .wish-item {
+            padding: 6px 0;
+            border-bottom: 1px dashed #f8bbd0;
+            transition: all 0.3s ease;
+        }
+
+        .wishes-list .wish-item:hover {
+            padding-left: 10px;
+            color: #c2185b;
+        }
+
+        .wishes-list .wish-item:last-child {
+            border-bottom: none;
+            font-weight: 700;
+            color: #e91e63;
+        }
+
+        /* Ribbon */
+        .ribbon {
+            width: 100%;
+            height: 40px;
+            background: repeating-linear-gradient(90deg, #f06292 0px, #f06292 20px, #f8bbd0 20px, #f8bbd0 40px);
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 10px;
+            opacity: 0.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 48px; }
+            .hero .name { font-size: 38px; }
+            .image-section { grid-template-columns: 1fr; }
+            .qualities { grid-template-columns: repeat(2, 1fr); }
+            .wish-card { padding: 25px; }
+            .final-wish h2 { font-size: 36px; }
+        }
+
+        @media (max-width: 480px) {
+            .qualities { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 36px; }
+            .hero .name { font-size: 28px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Audio Element -->
+    <audio id="birthdayAudio" src="birthday_song.mp3" preload="auto" loop></audio>
+
+    <!-- Music Control Floating Button -->
+    <div id="musicPlayerControl" onclick="toggleMusic()">
+        <span class="music-disc" id="musicDiscIcon">🎵</span>
+        <span id="musicBtnText">Play Music 🎶</span>
+    </div>
+
+    <!-- Countdown Overlay -->
+    <div id="countdownOverlay">
+        <div class="countdown-card">
+            <div class="envelope-icon">💌</div>
+            <h1 class="countdown-title">A Special Surprise For Rishuraj 🎀</h1>
+            <p class="countdown-sub">Sent with love by <strong>Nidhi</strong> 🌸</p>
+            
+            <div class="timer-grid">
+                <div class="timer-box">
+                    <div class="timer-num" id="tHours">00</div>
+                    <div class="timer-lbl">Hours</div>
+                </div>
+                <div class="timer-box">
+                    <div class="timer-num" id="tMinutes">00</div>
+                    <div class="timer-lbl">Minutes</div>
+                </div>
+                <div class="timer-box">
+                    <div class="timer-num" id="tSeconds">00</div>
+                    <div class="timer-lbl">Seconds</div>
+                </div>
+                <div class="timer-box">
+                    <div class="timer-num" id="tMillis">00</div>
+                    <div class="timer-lbl">Milli</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 15px;">
+                <button class="preview-btn" id="openBtn" onclick="handleButtonClick()">
+                    🔒 Tap to Unlock 🎀
+                </button>
+                <div id="lockToast"></div>
+            </div>
+            <p style="font-size: 13px; color: #ad1457; margin-top: 15px; opacity: 0.85;">
+                🌸 Patience gorgeous! Unlocks strictly at 12:00 AM Midnight! ✨
+            </p>
+        </div>
+    </div>
+
+    <!-- Floating Hearts Background -->
+    <div class="hearts-container" id="heartsContainer"></div>
+
+    <!-- Butterflies -->
+    <div class="butterfly" style="top: 20%; left: 10%;">🦋</div>
+    <div class="butterfly" style="top: 40%; right: 15%; animation-delay: -5s;">🦋</div>
+    <div class="butterfly" style="top: 60%; left: 20%; animation-delay: -10s;">🦋</div>
+
+    <div class="container">
+
+        <!-- Ribbon Top -->
+        <div class="ribbon"></div>
+
+        <div style="text-align: center; margin-bottom: 20px;">
+            <span style="display: inline-block; background: rgba(255, 255, 255, 0.9); border: 2px dashed #f06292; padding: 10px 28px; border-radius: 30px; font-family: 'Pacifico', cursive; font-size: 20px; color: #ad1457; box-shadow: 0 4px 15px rgba(233, 30, 99, 0.15);">
+                💌 Dedicated with infinite love from your bestie, <strong>Nidhi</strong> 🌸
+            </span>
+        </div>
+
+        <!-- ===== BANNER IMAGE ===== -->
+        <div class="banner-section">
+            <img src="bday_banner.png" alt="Happy Birthday Rishuraj Banner">
+        </div>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-badge">✨ Happy Birthday ✨</div>
+            <h1>Happy Birthday!</h1>
+            <div class="name">Rishuraj 🌸</div>
+            <div class="age-badge" id="ageBadge">21</div>
+            <p style="font-size: 20px; font-family: 'Dancing Script', cursive; color: #c2185b; margin-top: 15px;">
+                Turning <span id="ageText">21</span> & Shining Brighter Than Ever! 💫
+            </p>
+            <div class="dob-card" style="display: inline-flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px; background: rgba(255, 255, 255, 0.95); border: 2px solid #f48fb1; padding: 12px 28px; border-radius: 50px; box-shadow: 0 6px 20px rgba(233, 30, 99, 0.15); margin-top: 18px; font-family: 'Quicksand', sans-serif;">
+                <span style="font-size: 16px; font-weight: 700; color: #880e4f;">🗓️ Date of Birth: <strong>4 November 2005</strong></span>
+                <span style="color: #ec407a; font-weight: bold;">•</span>
+                <span style="font-size: 16px; font-weight: 700; color: #c2185b;">🎂 Calculated Age: <strong id="calculatedAge">21 Years Old</strong> ✨</span>
+            </div>
+        </section>
+
+        <div class="divider">🌸 💖 🎀 💖 🌸</div>
+
+        <!-- ===== CAKE IMAGE ===== -->
+        <div class="image-section">
+            <div class="image-card full-width-image">
+                <img src="anamika_cake.png" alt="Birthday Cake">
+                <div class="caption">🎂 Happy Birthday Rishuraj! 🎂</div>
+            </div>
+        </div>
+
+        <!-- Main Birthday Wish -->
+        <div class="wish-card">
+            <div class="content">
+                <h2>🎀 My Dearest Rishuraj 🎀</h2>
+                <div class="emoji-row">🎂 🎈 🎁 🌹 👑</div>
+                <p>
+                    Happy Birthday to the most amazing and wonderful person I know! 🌸
+                    Today is YOUR milestone day, and I want you to know just how incredibly special you are to me.
+                </p>
+                <p>
+                    From the moment we became friends, my life has been filled with so much more
+                    laughter, joy, and unforgettable adventures. You're not just my friend — you're my
+                    partner in crime, and the one person who always understands me without words! 💗
+                </p>
+                <p>
+                    Stepping into this exciting new chapter of your life,
+                    I know you are destined to conquer every dream! ✨ The world is so lucky
+                    to have someone as kind, fierce, smart, and wonderful as you.
+                </p>
+                <div class="emoji-row">💐 🦋 🌺 💝 🎀</div>
+            </div>
+        </div>
+
+        <!-- ===== FRIENDS TOGETHER IMAGE ===== -->
+        <div class="image-section">
+            <div class="image-card full-width-image">
+                <img src="friends_together.png" alt="Best Friends Together">
+                <div class="caption">👭 Best Friends Forever — You & Me! 💕</div>
+            </div>
+        </div>
+
+        <!-- Qualities Section -->
+        <h2 style="font-family: 'Great Vibes', cursive; font-size: 38px; color: #ad1457; text-align: center; margin: 30px 0 15px;">
+            Why You're So Special ✨
+        </h2>
+        <div class="qualities">
+            <div class="quality-item">
+                <div class="icon">💖</div>
+                <div class="label">Kind Heart</div>
+            </div>
+            <div class="quality-item">
+                <div class="icon">🌟</div>
+                <div class="label">Beautiful Soul</div>
+            </div>
+            <div class="quality-item">
+                <div class="icon">😊</div>
+                <div class="label">Sweetest Smile</div>
+            </div>
+            <div class="quality-item">
+                <div class="icon">💪</div>
+                <div class="label">So Strong</div>
+            </div>
+            <div class="quality-item">
+                <div class="icon">🧠</div>
+                <div class="label">Super Smart</div>
+            </div>
+            <div class="quality-item">
+                <div class="icon">✨</div>
+                <div class="label">Pure Magic</div>
+            </div>
+        </div>
+
+        <!-- ===== BFF FLOWERS IMAGE ===== -->
+        <div class="image-section">
+            <div class="image-card full-width-image">
+                <img src="bff_flowers.png" alt="BFF Flowers Heart">
+                <div class="caption">🌹 BFF — Best Friends Forever! 🌹</div>
+            </div>
+        </div>
+
+        <!-- Poem Section -->
+        <div class="poem-card">
+            <h2>A Little Poem For You 🌸</h2>
+            <div class="verse">Birthday candles burning bright and clear,</div>
+            <div class="verse">Welcoming your most exciting year! ⭐</div>
+            <div class="verse">A friend like you is rare to find,</div>
+            <div class="verse">So wonderful, genuine, sweet and kind. 🌹</div>
+            <div class="verse">With every day you blossom and glow,</div>
+            <div class="verse">More fabulous than words can show. 💫</div>
+            <div class="verse">So here’s my wish as this new chapter starts today,</div>
+            <div class="verse">May pure magic guide you all the way! 🎀</div>
+            <br>
+            <div style="font-size: 30px; letter-spacing: 5px;">🌸 💖 🦋 💖 🌸</div>
+        </div>
+
+        <!-- ===== CELEBRATION IMAGE ===== -->
+        <div class="image-section">
+            <div class="image-card full-width-image">
+                <img src="bday_celebration.png" alt="Birthday Celebration">
+                <div class="caption">🎉 A Grand Celebration Just For You! 🎉</div>
+            </div>
+        </div>
+
+        <!-- Memories Section -->
+        <div class="memories">
+            <h2>Our Beautiful Friendship 💕</h2>
+            <div class="memory-item">
+                <div class="mem-icon">😂</div>
+                <div class="mem-text">All those times we laughed so hard that tears rolled down our faces — those are my favorite memories!</div>
+            </div>
+            <div class="memory-item">
+                <div class="mem-icon">🤗</div>
+                <div class="mem-text">The warm hugs when either of us needed comfort — you always know how to make everything feel okay.</div>
+            </div>
+            <div class="memory-item">
+                <div class="mem-icon">🌙</div>
+                <div class="mem-text">Late night chats about our dreams and our biggest goals — you're the one I trust the most!</div>
+            </div>
+            <div class="memory-item">
+                <div class="mem-icon">📸</div>
+                <div class="mem-text">All our selfies, silly photos, and the memories we've captured together — each one is precious to me.</div>
+            </div>
+            <div class="memory-item">
+                <div class="mem-icon">👯‍♀️</div>
+                <div class="mem-text">Being your friend is the best thing that ever happened to me. Here's to many more years of US!</div>
+            </div>
+        </div>
+
+        <!-- ===== WISH CARD IMAGE ===== -->
+        <div class="image-section">
+            <div class="image-card full-width-image">
+                <img src="wish_card.png" alt="Birthday Wish Card">
+                <div class="caption">💫 Happy Birthday, Rishuraj! Wishing You An Incredible Year Ahead! 💫</div>
+            </div>
+        </div>
+
+        <!-- Birthday Wishes List -->
+        <div class="wish-card">
+            <div class="content">
+                <h2>🌟 Milestone Wishes For Rishuraj 🌟</h2>
+                <div class="wishes-list">
+                    <div class="wish-item">1. 💖 Endless happiness and overflowing joy in your heart</div>
+                    <div class="wish-item">2. 🌹 True love, warmth, and care from everyone who cherishes you</div>
+                    <div class="wish-item">3. ✨ Wildest dreams turning into tangible realities</div>
+                    <div class="wish-item">4. 🦋 The absolute freedom and courage to conquer the world</div>
+                    <div class="wish-item">5. 📚 Tremendous success and triumphs in every ambition</div>
+                    <div class="wish-item">6. 🌸 Unstoppable inner peace, self-love, and glow</div>
+                    <div class="wish-item">7. 💫 Thrilling new journeys, travels, and sweet memories</div>
+                    <div class="wish-item">8. 🎵 Soulful music, midnight dancing, and laughter till our stomachs hurt</div>
+                    <div class="wish-item">9. 🌈 Days packed with golden surprises and cozy blessings</div>
+                    <div class="wish-item">10. 💝 An ever-radiant smile that lights up any dark room</div>
+                    <div class="wish-item">11. 🌺 Vibrant health, boundless energy, and positivity</div>
+                    <div class="wish-item">12. 🎀 Inimitable elegance, charm, and unmatched style</div>
+                    <div class="wish-item">13. 👑 The poise, dignity, and unstoppable mindset of a winner</div>
+                    <div class="wish-item">14. 🌙 Dreamy starry nights and sound, peaceful sleep</div>
+                    <div class="wish-item">15. 🍰 Sweet treats and guilt-free chocolate moments</div>
+                    <div class="wish-item">16. 📱 An infinite gallery of cute aesthetic photos & memories</div>
+                    <div class="wish-item">17. 🥂 The grandest beginning to your fabulous new chapter!</div>
+                    <div class="wish-item">18. 👭 You and me side-by-side forever, through every storm and celebration! 💕</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== OLD IMAGES KEPT ===== -->
+        <div class="image-section">
+            <div class="image-card">
+                <img src="cake_17.png" alt="Birthday Cake">
+                <div class="caption">🎂 Sweet Celebrations! 🎂</div>
+            </div>
+            <div class="image-card">
+                <img src="pink_roses.png" alt="Pink Roses">
+                <div class="caption">🌹 Roses For You! 🌹</div>
+            </div>
+        </div>
+
+        <div class="image-section">
+            <div class="image-card">
+                <img src="friends_hug.png" alt="Friends Hugging">
+                <div class="caption">👭 Our Bond is Unbreakable 💕</div>
+            </div>
+            <div class="image-card">
+                <img src="gifts_party.png" alt="Party Gifts">
+                <div class="caption">🎁 You Deserve It All! 🎁</div>
+            </div>
+        </div>
+
+        <!-- Final Section -->
+        <div class="final-wish">
+            <div class="crown-emoji">👑</div>
+            <div class="big-heart">💖</div>
+            <h2>Happy Birthday, Rishuraj!</h2>
+            <p style="font-size: 19px; color: #880e4f; line-height: 1.8; max-width: 600px; margin: 0 auto 20px;">
+                Happy Milestone Birthday! May this year bring you wings to fly higher than ever and courage to chase all your grandest ambitions.
+                You are a gem, a star, and the greatest gift of a friend I could ever have.
+                Keep glowing, keep laughing, and rule this new chapter! 🌟
+            </p>
+            <div style="font-size: 40px; margin: 20px 0;">
+                🎂 🎈 🎁 🌹 🎀 🦋 💐 👑
+            </div>
+            <div class="from">With All My Love 💕</div>
+            <div class="xoxo">~ Forever & Always, Your Bestie Nidhi ~</div>
+            <div style="margin-top: 15px; font-size: 26px;">
+                🌸 💖 ✨ 👭 ✨ 💖 🌸
+            </div>
+        </div>
+
+        <div class="divider" style="margin-top: 40px; margin-bottom: 20px;">
+            🌸 💖 🎀 💖 🌸
+        </div>
+
+        <p style="text-align: center; font-family: 'Dancing Script', cursive; font-size: 22px; color: #c2185b; padding-bottom: 40px;">
+            Handcrafted with infinite 💖 by Nidhi for Rishuraj! 🌸✨
+        </p>
+
+    </div>
+
+    <script>
+        // Create floating hearts
+        const heartsContainer = document.getElementById('heartsContainer');
+        const heartEmojis = ['💖', '💗', '💕', '💝', '💘', '🌸', '🎀', '✨', '💐', '🌹'];
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.fontSize = (15 + Math.random() * 20) + 'px';
+            heart.style.animationDuration = (8 + Math.random() * 12) + 's';
+            heart.style.animationDelay = Math.random() * 5 + 's';
+            heartsContainer.appendChild(heart);
+            setTimeout(() => heart.remove(), 20000);
+        }
+
+        for (let i = 0; i < 20; i++) setTimeout(createHeart, i * 300);
+        setInterval(createHeart, 800);
+
+        // Create sparkles
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.top = Math.random() * 100 + '%';
+            sparkle.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(sparkle);
+            setTimeout(() => sparkle.remove(), 4000);
+        }
+
+        for (let i = 0; i < 30; i++) setTimeout(createSparkle, i * 200);
+        setInterval(createSparkle, 500);
+
+        // Confetti
+        function createConfetti() {
+            const colors = ['#e91e63', '#f06292', '#f8bbd0', '#ff80ab', '#ff4081', '#fce4ec', '#FFD700'];
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti-piece';
+            confetti.style.left = Math.random() * 100 + '%';
+            confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+            confetti.style.width = (5 + Math.random() * 10) + 'px';
+            confetti.style.height = (5 + Math.random() * 10) + 'px';
+            confetti.style.animationDuration = (3 + Math.random() * 5) + 's';
+            document.body.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 8000);
+        }
+
+        for (let i = 0; i < 50; i++) setTimeout(createConfetti, i * 100);
+        setInterval(createConfetti, 300);
+
+        // ===== CALCULATE AGE FROM DOB (4 November 2005) =====
+        function calculateAgeFromDOB(dobString) {
+            const dob = new Date(dobString);
+            const today = new Date();
+            let years = today.getFullYear() - dob.getFullYear();
+            const monthDiff = today.getMonth() - dob.getMonth();
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+                years--;
+            }
+            return years;
+        }
+
+        const calculatedYears = calculateAgeFromDOB("2005-11-04T00:00:00");
+        const ageBadgeEl = document.getElementById('ageBadge');
+        if (ageBadgeEl) ageBadgeEl.textContent = calculatedYears;
+        const calcAgeEl = document.getElementById('calculatedAge');
+        if (calcAgeEl) calcAgeEl.textContent = calculatedYears + " Years Old";
+        const ageTextEl = document.getElementById('ageText');
+        if (ageTextEl) ageTextEl.textContent = calculatedYears;
+
+        // ===== COUNTDOWN TIMER (DISABLED AS REQUESTED) =====
+        let surpriseUnlocked = true;
+        const overlay = document.getElementById('countdownOverlay');
+        if (overlay) overlay.style.display = 'none';
+
+        // ===== AUDIO & BEAT GLITCH & FLOATING LYRICS =====
+        const audio = document.getElementById('birthdayAudio');
+        const discIcon = document.getElementById('musicDiscIcon');
+        const musicBtnText = document.getElementById('musicBtnText');
+        let audioCtx, analyser, dataArray, isAudioInitialized = false;
+
+        function initAudioAnalyzer() {
+            if (isAudioInitialized) return;
+            try {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                analyser = audioCtx.createAnalyser();
+                analyser.fftSize = 64;
+                const source = audioCtx.createMediaElementSource(audio);
+                source.connect(analyser);
+                analyser.connect(audioCtx.destination);
+                dataArray = new Uint8Array(analyser.frequencyBinCount);
+                isAudioInitialized = true;
+                detectBeat();
+            } catch (e) {
+                console.log("Web Audio initialized fallback", e);
+            }
+        }
+
+        function playSong() {
+            if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            initAudioAnalyzer();
+            audio.play().then(() => {
+                discIcon.style.animationPlayState = 'running';
+                musicBtnText.textContent = "Playing 🎵";
+            }).catch(e => {
+                console.log("Autoplay was prevented, will play on user interaction:", e);
+            });
+        }
+
+        function toggleMusic() {
+            if (audio.paused) {
+                playSong();
+            } else {
+                audio.pause();
+                discIcon.style.animationPlayState = 'paused';
+                musicBtnText.textContent = "Play Music 🎶";
+            }
+        }
+
+        // Automatic repeat loop guarantee
+        audio.addEventListener('ended', function() {
+            audio.currentTime = 0;
+            audio.play();
+        });
+
+        // Trigger audio playback seamlessly on any user interaction
+        document.body.addEventListener('click', function() {
+            if (audio.paused && surpriseUnlocked) {
+                playSong();
+            }
+        }, { once: true });
+
+        // Beat Detection Glitch on Container
+        const mainContainer = document.querySelector('.container');
+        let glitchCooldown = false;
+
+        function detectBeat() {
+            requestAnimationFrame(detectBeat);
+            if (!analyser || audio.paused) return;
+
+            analyser.getByteFrequencyData(dataArray);
+
+            // Lower bass frequencies (bass kick/drop)
+            let bassEnergy = 0;
+            for (let i = 0; i < 4; i++) {
+                bassEnergy += dataArray[i];
+            }
+            bassEnergy = bassEnergy / 4;
+
+            // Trigger glitch if heavy beat detected
+            if (bassEnergy > 195 && !glitchCooldown) {
+                glitchCooldown = true;
+                if (mainContainer) {
+                    mainContainer.classList.add('glitch-beat');
+                    setTimeout(() => {
+                        mainContainer.classList.remove('glitch-beat');
+                    }, 140);
+                }
+                setTimeout(() => {
+                    glitchCooldown = false;
+                }, 220);
+            }
+        }
+
+        // Bilingual Hindi/English Exact Funzoa Song Lyrics
+        const songLyrics = [
+            { time: 1, hi: "हैप्पी बर्थडे टू यू जी! 🎂", en: "Happy Birthday To You Ji!" },
+            { time: 4, hi: "केक शेक है तो फिर बुलाओ जी! 🍰", en: "Cake shake hai toh phir bulao ji!" },
+            { time: 8, hi: "ऐसे ही तुम बुद्धे होते रहोगे! 😂", en: "Aise hi tum buddhe hote rahoge!" },
+            { time: 12, hi: "हमको उससे क्या मतलब बताओ जी! 😜", en: "Humko usse kya matlab batao ji!" },
+            { time: 16, hi: "हैप्पी बर्थडे टू यू, हाँजी! 🥳", en: "Happy birthday to you, haanji!" },
+            { time: 20, hi: "तो इसपे इतने खुश क्यों हो अन्वै! 🤷‍♀️", en: "Toh ispe itne khush kyun ho avai!" },
+            { time: 24, hi: "तुम तो बरसों पहले ही निकल चुके हो! 🚀", en: "Tum toh barso pehle hi nikal chuke ho!" },
+            { time: 28, hi: "तो बर्थडे वाला नाटक ये क्यों है भाई! 🎭", en: "Toh birthday wala natak ye kyun hai bhai!" },
+            { time: 32, hi: "कैंडल शैन्डल फूँक से बुझवाके! 🕯️", en: "Candle shandle phoonk se bujhwake!" },
+            { time: 35, hi: "बेसुरों की भीड़ फालतू में लगवाके! 🎤", en: "Besuro ki bheed faltu mein lagwake!" },
+            { time: 38, hi: "बर्थडे वाला सोंग ज़ोर-ज़ोर से गवाते हो! 🎶", en: "Birthdaywala song zor zor se gawate ho!" },
+            { time: 42, hi: "हमसे ताली-वाली की हजामत करवाते हो! 👏", en: "Humse taaliwali ka hajamat karwate ho!" },
+            { time: 46, hi: "ये सब नौटंकी फिर भी चलो झेल लें! 🍿", en: "Ye sab nautanki phir bhi chalo jhel lein!" },
+            { time: 49, hi: "केक शेक और स्टार्टर्स भर-भरके आये प्लेट में! 🍕", en: "Cake shake aur starters bhar-bharke aaye plate mein!" },
+            { time: 53, hi: "घर जाके फिर से डिनर ना मंगवाना हो! 🍔", en: "Ghar jake phir se dinner na mangwana ho!" },
+            { time: 56, hi: "चूहे ना दौड़े पेट में रात के पौने दो! 🐭", en: "Chuhe na daude pet mein raat ke paune do!" },
+            { time: 60, hi: "हैप्पी बर्थडे टू यू जी! 🌸", en: "Happy birthday to you ji!" },
+            { time: 63, hi: "सोच समझ के इनवाइट भिजवाओ जी! 💌", en: "Soch samajh ke invite bhijwao ji!" },
+            { time: 66, hi: "अगर पेटपूजा का फुल इंतज़ाम है! 🍛", en: "Agar petpooja ka full intezaam hai!" },
+            { time: 70, hi: "तो ही न्यौता कन्सिडर करेंगे जी! 😋", en: "To hi nyota consider karenge ji!" },
+            { time: 74, hi: "हैप्पी बर्थडे टू यू, कह दिया है जी! 💖", en: "Happy birthday to you, keh diya hai ji!" },
+            { time: 77, hi: "तुम और भी बुद्धे हो गए, ओह तेरी! 👵", en: "Tum aur bhi buddhe ho gaye, oh teri!" },
+            { time: 80, hi: "दिल छोटा ना करो, उम्र का है क्या! 👑", en: "Dil chhota na karo, umra ka hai kya!" },
+            { time: 83, hi: "बाल झड़ेंगे, दाँत गिरेंगे, वैसे ही! 🦷", en: "Baal jhadenge, daant girenge, waise hi!" },
+            { time: 88, hi: "देखो कोई पुराना गिफ्ट हम जो ढूँढ पायें! 🎁", en: "Dekho koi purana gift hum jo dhoondh paye!" },
+            { time: 92, hi: "एक्सपेक्ट तभी करना हम कुछ हाथ में लेके आयें! 🛍️", en: "Expect tabhi karna hum kuch haath mein leke aaye!" },
+            { time: 96, hi: "यू आर ऑन माय फ्रेंड लिस्ट, ये नहीं मज़ाक है! 👭", en: "You are on my friend list, ye nahi mazaak hai!" },
+            { time: 100, hi: "हम टाइम निकाल के आ गए तो बड़ी बात है! ⏰", en: "Hum time nikaalke aa gaye toh badi baat hai!" },
+            { time: 104, hi: "वैसे सच बताओ तुम अब कितने साल के हुए! 🤫", en: "Waise sach batao tum ab kitne saal ke hue!" },
+            { time: 108, hi: "हमको क्या पड़ी है, हम किसी को ना बतायें! 🤐", en: "Humko kya padi hai, hum kisi ko na batayein!" },
+            { time: 112, hi: "मुँह ना बिगाड़ो आज तुम्हारा बर्थडे है! 🍰", en: "Muh na bigado aaj tumhara birthday hai!" },
+            { time: 116, hi: "तुम अकेले हो नहीं, यहाँ और भी बुद्धे हैं! 🥳", en: "Tum akele ho nahi, yahan aur bhi buddhe hai!" },
+            { time: 120, hi: "सोच-सोच के और बी.पी. ना बढ़ाओ! 💓", en: "Soch soch ke aur B.P. na badhao!" },
+            { time: 123, hi: "सिंग हैप्पी बर्थडे टू मी! 🎵", en: "Sing happy birthday to me!" },
+            { time: 126, hi: "बत्तीसी चमका के चिल्ला कर गाओ! 😁", en: "Battisi chamkake chillakar gao!" },
+            { time: 130, hi: "हैप्पी बर्थडे टू मी! 🌟", en: "Happy birthday to me!" },
+            { time: 134, hi: "अब पैसे वैसे खर्चे हो और केक भी मंगवाए हो! 💸", en: "Ab paise waise kharche ho aur cake bhi mangwaye ho!" },
+            { time: 139, hi: "तो पार्टी खत्म होने के बाद सर पटकना जी! 🤦‍♀️", en: "Toh party khatam hone ke baad sar patakna ji!" },
+            { time: 144, hi: "हैप्पी बर्थडे टू यू जी! 🎀", en: "Happy birthday to you ji!" },
+            { time: 147, hi: "कैसी लगी तुमको मेरी फिलोसोफी! 💡", en: "Kaisi lagi tumko meri philosophy!" },
+            { time: 151, hi: "धरती पे बोझ तुम बने हो जी! 🌍", en: "Dharti pe bojh tum bane ho ji!" },
+            { time: 155, hi: "हैप्पी बर्थडे टू यू, बट यू सी! 🌸", en: "Happy birthday to you, but you see!" },
+            { time: 158, hi: "उम्र छुपाने का नाम है ज़िन्दगी! 💖", en: "Umra chupane ka naam hai zindagi!" },
+            { time: 162, hi: "मुझको बुलाओ ना बुलाओ पर बताना! 💌", en: "Mujhko bulao na bulao par batana!" },
+            { time: 165, hi: "ये बर्थडे वाला सोंग हिंदी में तुमको कैसा लगा है जी! 💃", en: "Ye birthdaywala song hindi mein tumko kaisa laga hai ji!" }
+        ];
+
+        let lastSpawnedIndex = -1;
+
+        function showLyricPopup(item) {
+            const bubble = document.createElement('div');
+            bubble.className = 'floating-lyric-tag';
+
+            // Random positions on screen (any position!)
+            const maxW = Math.max(window.innerWidth - 320, 20);
+            const maxH = Math.max(window.innerHeight - 180, 50);
+            const randomX = Math.floor(Math.random() * maxW) + 20;
+            const randomY = Math.floor(Math.random() * maxH) + 60;
+
+            bubble.style.left = randomX + 'px';
+            bubble.style.top = randomY + 'px';
+
+            bubble.innerHTML = `
+                <span class="hindi-txt" style="font-size: 19px; font-weight: bold; color: #ad1457;">${item.hi}</span>
+                <span style="font-size: 15px; color: #6a1b4d; font-family: 'Quicksand', sans-serif; font-weight: 600;">${item.en}</span>
+            `;
+
+            document.body.appendChild(bubble);
+
+            setTimeout(() => {
+                bubble.remove();
+            }, 4500);
+        }
+
+        // Track audio current time to pop exact lyrics at their real song moment
+        audio.addEventListener('timeupdate', function() {
+            if (audio.paused) return;
+            const curTime = audio.currentTime;
+
+            for (let i = songLyrics.length - 1; i >= 0; i--) {
+                if (curTime >= songLyrics[i].time) {
+                    if (lastSpawnedIndex !== i) {
+                        lastSpawnedIndex = i;
+                        showLyricPopup(songLyrics[i]);
+                    }
+                    break;
+                }
+            }
+        });
+
+        // Spontaneous floating lyrics appearing on BOTH waiting page and main page constantly
+        setInterval(function() {
+            const randomItem = songLyrics[Math.floor(Math.random() * songLyrics.length)];
+            showLyricPopup(randomItem);
+        }, 2800);
+
+        // Immediate song playback when website loads
+        window.addEventListener('DOMContentLoaded', () => {
+            playSong();
+        });
+        window.addEventListener('load', () => {
+            playSong();
+        });
+        document.addEventListener('pointerdown', () => {
+            if (audio.paused) playSong();
+        }, { once: true });
+        document.addEventListener('touchstart', () => {
+            if (audio.paused) playSong();
+        }, { once: true });
+        document.addEventListener('click', () => {
+            if (audio.paused) playSong();
+        }, { once: true });
+        document.addEventListener('keydown', () => {
+            if (audio.paused) playSong();
+        }, { once: true });
+    </script>
+
+</body>
+</html>

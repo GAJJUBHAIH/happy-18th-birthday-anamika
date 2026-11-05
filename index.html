@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎀 Happy 18th Birthday Anamika! 🎀</title>
+    <title>🎀 Happy Birthday Rishuraj! 🎀</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Quicksand:wght@300;400;500;600;700&family=Great+Vibes&family=Pacifico&display=swap" rel="stylesheet">
     <style>
         * {
@@ -75,8 +75,9 @@
             z-index: 2;
         }
 
-        /* ===== COUNTDOWN OVERLAY ===== */
+        /* ===== COUNTDOWN OVERLAY (DISABLED) ===== */
         #countdownOverlay {
+            display: none !important;
             position: fixed;
             top: 0;
             left: 0;
@@ -84,7 +85,6 @@
             height: 100%;
             background: radial-gradient(circle at center, #ffebee 0%, #fce4ec 50%, #f8bbd0 100%);
             z-index: 99999;
-            display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -829,8 +829,8 @@
     <div id="countdownOverlay">
         <div class="countdown-card">
             <div class="envelope-icon">💌</div>
-            <h1 class="countdown-title">A Special Surprise For Anamika 🎀</h1>
-            <p class="countdown-sub">Sent with love by <strong>Nidhi</strong> 🌸 • Unlocking at Midnight!</p>
+            <h1 class="countdown-title">A Special Surprise For Rishuraj 🎀</h1>
+            <p class="countdown-sub">Sent with love by <strong>Nidhi</strong> 🌸</p>
             
             <div class="timer-grid">
                 <div class="timer-box">
@@ -884,48 +884,53 @@
 
         <!-- ===== BANNER IMAGE ===== -->
         <div class="banner-section">
-            <img src="bday_banner.png" alt="Happy 17th Birthday Anamika Banner">
+            <img src="bday_banner.png" alt="Happy Birthday Rishuraj Banner">
         </div>
 
         <!-- Hero Section -->
         <section class="hero">
             <div class="hero-badge">✨ Happy Birthday ✨</div>
             <h1>Happy Birthday!</h1>
-            <div class="name">Anamika 🌸</div>
-            <div class="age-badge">18</div>
+            <div class="name">Rishuraj 🌸</div>
+            <div class="age-badge" id="ageBadge">21</div>
             <p style="font-size: 20px; font-family: 'Dancing Script', cursive; color: #c2185b; margin-top: 15px;">
-                Turning Eighteen & Stepping Into Adulthood With Grace & Magic! 💫
+                Turning <span id="ageText">21</span> & Shining Brighter Than Ever! 💫
             </p>
+            <div class="dob-card" style="display: inline-flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px; background: rgba(255, 255, 255, 0.95); border: 2px solid #f48fb1; padding: 12px 28px; border-radius: 50px; box-shadow: 0 6px 20px rgba(233, 30, 99, 0.15); margin-top: 18px; font-family: 'Quicksand', sans-serif;">
+                <span style="font-size: 16px; font-weight: 700; color: #880e4f;">🗓️ Date of Birth: <strong>4 November 2005</strong></span>
+                <span style="color: #ec407a; font-weight: bold;">•</span>
+                <span style="font-size: 16px; font-weight: 700; color: #c2185b;">🎂 Calculated Age: <strong id="calculatedAge">21 Years Old</strong> ✨</span>
+            </div>
         </section>
 
         <div class="divider">🌸 💖 🎀 💖 🌸</div>
 
-        <!-- ===== ANAMIKA CAKE IMAGE ===== -->
+        <!-- ===== CAKE IMAGE ===== -->
         <div class="image-section">
             <div class="image-card full-width-image">
-                <img src="anamika_cake.png" alt="Anamika with 18th Birthday Cake">
-                <div class="caption">🎂 Birthday Queen Anamika Turning 18! 🎂</div>
+                <img src="anamika_cake.png" alt="Birthday Cake">
+                <div class="caption">🎂 Happy Birthday Rishuraj! 🎂</div>
             </div>
         </div>
 
         <!-- Main Birthday Wish -->
         <div class="wish-card">
             <div class="content">
-                <h2>🎀 My Dearest Anamika 🎀</h2>
+                <h2>🎀 My Dearest Rishuraj 🎀</h2>
                 <div class="emoji-row">🎂 🎈 🎁 🌹 👑</div>
                 <p>
-                    Happy 18th Birthday to the most amazing, beautiful, and wonderful girl I know! 🌸
-                    Welcome to the official adult club, my gorgeous bestie! Today is YOUR milestone day, and I want you to know just how incredibly special you are to me.
+                    Happy Birthday to the most amazing and wonderful person I know! 🌸
+                    Today is YOUR milestone day, and I want you to know just how incredibly special you are to me.
                 </p>
                 <p>
                     From the moment we became friends, my life has been filled with so much more
                     laughter, joy, and unforgettable adventures. You're not just my friend — you're my
-                    soul sister, my crime partner, and the one person who always understands me without words! 💗
+                    partner in crime, and the one person who always understands me without words! 💗
                 </p>
                 <p>
-                    At 18, you're stepping into the most thrilling, boundless chapter of your life,
-                    and I know you are destined to conquer every dream! ✨ The world is so lucky
-                    to have someone as kind, fierce, smart, and stunning as you.
+                    Stepping into this exciting new chapter of your life,
+                    I know you are destined to conquer every dream! ✨ The world is so lucky
+                    to have someone as kind, fierce, smart, and wonderful as you.
                 </p>
                 <div class="emoji-row">💐 🦋 🌺 💝 🎀</div>
             </div>
@@ -981,13 +986,13 @@
         <!-- Poem Section -->
         <div class="poem-card">
             <h2>A Little Poem For You 🌸</h2>
-            <div class="verse">Eighteen candles burning bright and clear,</div>
+            <div class="verse">Birthday candles burning bright and clear,</div>
             <div class="verse">Welcoming your most exciting year! ⭐</div>
-            <div class="verse">A bestie like you is rare to find,</div>
-            <div class="verse">So graceful, so lovely, sweet and kind. 🌹</div>
+            <div class="verse">A friend like you is rare to find,</div>
+            <div class="verse">So wonderful, genuine, sweet and kind. 🌹</div>
             <div class="verse">With every day you blossom and glow,</div>
             <div class="verse">More fabulous than words can show. 💫</div>
-            <div class="verse">So here’s my wish as adulthood starts today,</div>
+            <div class="verse">So here’s my wish as this new chapter starts today,</div>
             <div class="verse">May pure magic guide you all the way! 🎀</div>
             <br>
             <div style="font-size: 30px; letter-spacing: 5px;">🌸 💖 🦋 💖 🌸</div>
@@ -997,7 +1002,7 @@
         <div class="image-section">
             <div class="image-card full-width-image">
                 <img src="bday_celebration.png" alt="Birthday Celebration">
-                <div class="caption">🎉 A Grand Pink Celebration Just For You! 🎉</div>
+                <div class="caption">🎉 A Grand Celebration Just For You! 🎉</div>
             </div>
         </div>
 
@@ -1014,7 +1019,7 @@
             </div>
             <div class="memory-item">
                 <div class="mem-icon">🌙</div>
-                <div class="mem-text">Late night chats about our dreams, our crushes, and our biggest secrets — you're the one I trust the most!</div>
+                <div class="mem-text">Late night chats about our dreams and our biggest goals — you're the one I trust the most!</div>
             </div>
             <div class="memory-item">
                 <div class="mem-icon">📸</div>
@@ -1029,15 +1034,15 @@
         <!-- ===== WISH CARD IMAGE ===== -->
         <div class="image-section">
             <div class="image-card full-width-image">
-                <img src="wish_card.png" alt="18th Birthday Wish Card">
-                <div class="caption">💫 Welcome to 18, Anamika! Wishing You An Incredible Year Ahead! 💫</div>
+                <img src="wish_card.png" alt="Birthday Wish Card">
+                <div class="caption">💫 Happy Birthday, Rishuraj! Wishing You An Incredible Year Ahead! 💫</div>
             </div>
         </div>
 
         <!-- Birthday Wishes List -->
         <div class="wish-card">
             <div class="content">
-                <h2>🌟 18 Wishes For You At 18 🌟</h2>
+                <h2>🌟 Milestone Wishes For Rishuraj 🌟</h2>
                 <div class="wishes-list">
                     <div class="wish-item">1. 💖 Endless happiness and overflowing joy in your heart</div>
                     <div class="wish-item">2. 🌹 True love, warmth, and care from everyone who cherishes you</div>
@@ -1051,11 +1056,11 @@
                     <div class="wish-item">10. 💝 An ever-radiant smile that lights up any dark room</div>
                     <div class="wish-item">11. 🌺 Vibrant health, boundless energy, and positivity</div>
                     <div class="wish-item">12. 🎀 Inimitable elegance, charm, and unmatched style</div>
-                    <div class="wish-item">13. 👑 The poise, dignity, and unstoppable mindset of a true Queen</div>
+                    <div class="wish-item">13. 👑 The poise, dignity, and unstoppable mindset of a winner</div>
                     <div class="wish-item">14. 🌙 Dreamy starry nights and sound, peaceful sleep</div>
                     <div class="wish-item">15. 🍰 Sweet treats and guilt-free chocolate moments</div>
                     <div class="wish-item">16. 📱 An infinite gallery of cute aesthetic photos & memories</div>
-                    <div class="wish-item">17. 🥂 The grandest beginning to your fabulous adulthood chapter!</div>
+                    <div class="wish-item">17. 🥂 The grandest beginning to your fabulous new chapter!</div>
                     <div class="wish-item">18. 👭 You and me side-by-side forever, through every storm and celebration! 💕</div>
                 </div>
             </div>
@@ -1065,7 +1070,7 @@
         <div class="image-section">
             <div class="image-card">
                 <img src="cake_17.png" alt="Birthday Cake">
-                <div class="caption">🎂 Sweet 17! 🎂</div>
+                <div class="caption">🎂 Sweet Celebrations! 🎂</div>
             </div>
             <div class="image-card">
                 <img src="pink_roses.png" alt="Pink Roses">
@@ -1088,11 +1093,11 @@
         <div class="final-wish">
             <div class="crown-emoji">👑</div>
             <div class="big-heart">💖</div>
-            <h2>Happy 18th Birthday, Anamika!</h2>
+            <h2>Happy Birthday, Rishuraj!</h2>
             <p style="font-size: 19px; color: #880e4f; line-height: 1.8; max-width: 600px; margin: 0 auto 20px;">
-                Happy 18th Milestone Birthday! May this year bring you wings to fly higher than ever and courage to chase all your grandest ambitions.
-                You are a gem, a queen, and the greatest gift of a friend I could ever have.
-                Keep glowing, keep laughing, and rule this new chapter like royalty! 🌟
+                Happy Milestone Birthday! May this year bring you wings to fly higher than ever and courage to chase all your grandest ambitions.
+                You are a gem, a star, and the greatest gift of a friend I could ever have.
+                Keep glowing, keep laughing, and rule this new chapter! 🌟
             </p>
             <div style="font-size: 40px; margin: 20px 0;">
                 🎂 🎈 🎁 🌹 🎀 🦋 💐 👑
@@ -1109,7 +1114,7 @@
         </div>
 
         <p style="text-align: center; font-family: 'Dancing Script', cursive; font-size: 22px; color: #c2185b; padding-bottom: 40px;">
-            Handcrafted with infinite 💖 by Nidhi for the most amazing girl — Anamika! 🌸👭
+            Handcrafted with infinite 💖 by Nidhi for Rishuraj! 🌸✨
         </p>
 
     </div>
@@ -1166,85 +1171,30 @@
         for (let i = 0; i < 50; i++) setTimeout(createConfetti, i * 100);
         setInterval(createConfetti, 300);
 
-        // ===== COUNTDOWN TIMER LOGIC =====
-        function getNextMidnight() {
-            const now = new Date();
-            const midnight = new Date(now);
-            midnight.setHours(24, 0, 0, 0); // Next 12:00 AM
-            return midnight;
+        // ===== CALCULATE AGE FROM DOB (4 November 2005) =====
+        function calculateAgeFromDOB(dobString) {
+            const dob = new Date(dobString);
+            const today = new Date();
+            let years = today.getFullYear() - dob.getFullYear();
+            const monthDiff = today.getMonth() - dob.getMonth();
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+                years--;
+            }
+            return years;
         }
 
-        const targetTime = getNextMidnight().getTime();
-        let surpriseUnlocked = false;
+        const calculatedYears = calculateAgeFromDOB("2005-11-04T00:00:00");
+        const ageBadgeEl = document.getElementById('ageBadge');
+        if (ageBadgeEl) ageBadgeEl.textContent = calculatedYears;
+        const calcAgeEl = document.getElementById('calculatedAge');
+        if (calcAgeEl) calcAgeEl.textContent = calculatedYears + " Years Old";
+        const ageTextEl = document.getElementById('ageText');
+        if (ageTextEl) ageTextEl.textContent = calculatedYears;
 
-        function handleButtonClick() {
-            const now = new Date().getTime();
-            if (now >= targetTime) {
-                unlockSurprise();
-            } else {
-                // Deny opening before timer ends with cute message & wobble
-                const btn = document.getElementById('openBtn');
-                const toast = document.getElementById('lockToast');
-                
-                btn.classList.remove('shake');
-                void btn.offsetWidth; // trigger reflow
-                btn.classList.add('shake');
-
-                const playfulMessages = [
-                    "🚫 Not yet Anamika! Keep patience for your 18th magic! ⏳💖",
-                    "🔒 Shh! The surprise is strictly locked until Midnight! 🎀✨",
-                    "🌸 Nice try bestie! Only openable when the clock hits 12:00 AM! 🎂",
-                    "✨ Good things come to those who wait! Countdown is ticking! 💕"
-                ];
-                const msg = playfulMessages[Math.floor(Math.random() * playfulMessages.length)];
-                toast.textContent = msg;
-                toast.style.display = "inline-block";
-
-                setTimeout(() => {
-                    btn.classList.remove('shake');
-                }, 500);
-            }
-        }
-
-        function unlockSurprise() {
-            if (surpriseUnlocked) return;
-            surpriseUnlocked = true;
-            const overlay = document.getElementById('countdownOverlay');
-            if (overlay) {
-                overlay.classList.add('hidden');
-                setTimeout(() => overlay.remove(), 1000);
-            }
-            // Trigger celebration confetti blast
-            for (let i = 0; i < 80; i++) {
-                setTimeout(createConfetti, i * 40);
-            }
-            // Auto start birthday song upon unlock!
-            playSong();
-        }
-
-        function updateCountdown() {
-            if (surpriseUnlocked) return;
-            const now = new Date().getTime();
-            const diff = targetTime - now;
-
-            if (diff <= 0) {
-                unlockSurprise();
-                return;
-            }
-
-            const hours = Math.floor(diff / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-            const millis = Math.floor((diff % 1000) / 10);
-
-            document.getElementById('tHours').textContent = String(hours).padStart(2, '0');
-            document.getElementById('tMinutes').textContent = String(minutes).padStart(2, '0');
-            document.getElementById('tSeconds').textContent = String(seconds).padStart(2, '0');
-            document.getElementById('tMillis').textContent = String(millis).padStart(2, '0');
-        }
-
-        setInterval(updateCountdown, 40);
-        updateCountdown();
+        // ===== COUNTDOWN TIMER (DISABLED AS REQUESTED) =====
+        let surpriseUnlocked = true;
+        const overlay = document.getElementById('countdownOverlay');
+        if (overlay) overlay.style.display = 'none';
 
         // ===== AUDIO & BEAT GLITCH & FLOATING LYRICS =====
         const audio = document.getElementById('birthdayAudio');
