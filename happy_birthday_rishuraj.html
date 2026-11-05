@@ -75,9 +75,8 @@
             z-index: 2;
         }
 
-        /* ===== COUNTDOWN OVERLAY (DISABLED) ===== */
+        /* ===== 10 TO 1 REVERSE COUNTDOWN OVERLAY ===== */
         #countdownOverlay {
-            display: none !important;
             position: fixed;
             top: 0;
             left: 0;
@@ -85,12 +84,13 @@
             height: 100%;
             background: radial-gradient(circle at center, #ffebee 0%, #fce4ec 50%, #f8bbd0 100%);
             z-index: 99999;
+            display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 20px;
             text-align: center;
-            transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
 
         #countdownOverlay.hidden {
@@ -100,13 +100,13 @@
         }
 
         .countdown-card {
-            background: rgba(255, 255, 255, 0.88);
+            background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(15px);
             border: 3px solid #f48fb1;
             box-shadow: 0 20px 60px rgba(233, 30, 99, 0.25), inset 0 0 20px rgba(255, 255, 255, 0.8);
             border-radius: 35px;
             padding: 40px 30px;
-            max-width: 650px;
+            max-width: 520px;
             width: 90%;
             position: relative;
             animation: cardFloat 4s ease-in-out infinite;
@@ -117,15 +117,31 @@
             50% { transform: translateY(-8px); }
         }
 
-        .countdown-card .envelope-icon {
-            font-size: 55px;
-            animation: heartPulse 1.6s ease infinite;
-            display: inline-block;
+        .countdown-circle {
+            width: 135px;
+            height: 135px;
+            border-radius: 50%;
+            margin: 20px auto;
+            background: linear-gradient(135deg, #ec407a, #d81b60);
+            box-shadow: 0 10px 35px rgba(233, 30, 99, 0.45), inset 0 0 15px rgba(255, 255, 255, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-family: 'Pacifico', cursive;
+            font-size: 65px;
+            border: 4px solid #ffffff;
+            transition: all 0.25s ease;
         }
 
-        @keyframes heartPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.15); }
+        .num-pulse {
+            animation: numPop 0.85s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes numPop {
+            0% { transform: scale(0.4); opacity: 0; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
         }
 
         .countdown-title {
@@ -797,41 +813,26 @@
         <span id="musicBtnText">Play Music 🎶</span>
     </div>
 
-    <!-- Countdown Overlay -->
+    <!-- 10 to 1 Reverse Countdown Overlay -->
     <div id="countdownOverlay">
         <div class="countdown-card">
-            <div class="envelope-icon">💌</div>
-            <h1 class="countdown-title">A Special Surprise For Rishuraj 🎀</h1>
-            <p class="countdown-sub">Sent with love by <strong>Gajju</strong> 👊🔥</p>
-            
-            <div class="timer-grid">
-                <div class="timer-box">
-                    <div class="timer-num" id="tHours">00</div>
-                    <div class="timer-lbl">Hours</div>
-                </div>
-                <div class="timer-box">
-                    <div class="timer-num" id="tMinutes">00</div>
-                    <div class="timer-lbl">Minutes</div>
-                </div>
-                <div class="timer-box">
-                    <div class="timer-num" id="tSeconds">00</div>
-                    <div class="timer-lbl">Seconds</div>
-                </div>
-                <div class="timer-box">
-                    <div class="timer-num" id="tMillis">00</div>
-                    <div class="timer-lbl">Milli</div>
-                </div>
-            </div>
-
-            <div style="margin-top: 15px;">
-                <button class="preview-btn" id="openBtn" onclick="handleButtonClick()">
-                    🔒 Tap to Unlock 🎀
-                </button>
-                <div id="lockToast"></div>
-            </div>
-            <p style="font-size: 13px; color: #ad1457; margin-top: 15px; opacity: 0.85;">
-                🌸 Patience gorgeous! Unlocks strictly at 12:00 AM Midnight! ✨
+            <div style="font-size: 55px; margin-bottom: 5px;">🎁 🎂 🚀</div>
+            <h1 class="countdown-title" style="font-size: 44px; color: #ad1457; margin: 5px 0;">Surprise For Rishuraj! 🎀</h1>
+            <p style="font-size: 16px; font-weight: 700; color: #880e4f; margin-bottom: 5px;">
+                Unlocking in...
             </p>
+            
+            <div class="countdown-circle" id="countNumber">10</div>
+
+            <p style="font-size: 15px; font-weight: 700; color: #ad1457; margin-top: 10px;">
+                Hold tight! Sent with bro-love by <strong>Gajju</strong> 👊🔥
+            </p>
+
+            <div style="margin-top: 18px;">
+                <button class="preview-btn" onclick="finishCountdown()" style="font-size: 14px; padding: 10px 24px;">
+                    ✨ Open Right Now ✨
+                </button>
+            </div>
         </div>
     </div>
 
@@ -1166,10 +1167,56 @@
         const ageTextEl = document.getElementById('ageText');
         if (ageTextEl) ageTextEl.textContent = calculatedYears;
 
-        // ===== COUNTDOWN TIMER (DISABLED AS REQUESTED) =====
-        let surpriseUnlocked = true;
+        // ===== 10 TO 1 REVERSE COUNTDOWN LOGIC =====
+        let countdownVal = 10;
+        let surpriseUnlocked = false;
+        const countNumberEl = document.getElementById('countNumber');
         const overlay = document.getElementById('countdownOverlay');
-        if (overlay) overlay.style.display = 'none';
+
+        function triggerNumAnimation() {
+            if (!countNumberEl) return;
+            countNumberEl.classList.remove('num-pulse');
+            void countNumberEl.offsetWidth; // reflow
+            countNumberEl.classList.add('num-pulse');
+        }
+
+        function finishCountdown() {
+            if (surpriseUnlocked) return;
+            surpriseUnlocked = true;
+            clearInterval(countdownTimer);
+
+            if (countNumberEl) {
+                countNumberEl.style.fontSize = "32px";
+                countNumberEl.textContent = "BOOM! 🎉";
+            }
+
+            setTimeout(() => {
+                if (overlay) {
+                    overlay.classList.add('hidden');
+                    setTimeout(() => { overlay.style.display = 'none'; }, 800);
+                }
+                // Big celebration confetti blast
+                for (let i = 0; i < 90; i++) {
+                    setTimeout(createConfetti, i * 35);
+                }
+                // Start playing song!
+                playSong();
+            }, 600);
+        }
+
+        const countdownTimer = setInterval(() => {
+            countdownVal--;
+            if (countdownVal > 0) {
+                if (countNumberEl) {
+                    countNumberEl.textContent = countdownVal;
+                    triggerNumAnimation();
+                }
+            } else {
+                finishCountdown();
+            }
+        }, 1000);
+
+        triggerNumAnimation();
 
         // ===== AUDIO & FLOATING LYRICS =====
         const audio = document.getElementById('birthdayAudio');
@@ -1300,31 +1347,24 @@
             }
         });
 
-        // Spontaneous floating lyrics appearing on BOTH waiting page and main page constantly
+        // Spontaneous floating lyrics appearing after countdown unlocks
         setInterval(function() {
-            const randomItem = songLyrics[Math.floor(Math.random() * songLyrics.length)];
-            showLyricPopup(randomItem);
+            if (surpriseUnlocked && !audio.paused) {
+                const randomItem = songLyrics[Math.floor(Math.random() * songLyrics.length)];
+                showLyricPopup(randomItem);
+            }
         }, 2800);
 
-        // Immediate song playback when website loads
-        window.addEventListener('DOMContentLoaded', () => {
-            playSong();
-        });
-        window.addEventListener('load', () => {
-            playSong();
-        });
+        // Resume audio on touch if browser restricts initial sound
         document.addEventListener('pointerdown', () => {
-            if (audio.paused) playSong();
-        }, { once: true });
+            if (audio.paused && surpriseUnlocked) playSong();
+        });
         document.addEventListener('touchstart', () => {
-            if (audio.paused) playSong();
-        }, { once: true });
+            if (audio.paused && surpriseUnlocked) playSong();
+        });
         document.addEventListener('click', () => {
-            if (audio.paused) playSong();
-        }, { once: true });
-        document.addEventListener('keydown', () => {
-            if (audio.paused) playSong();
-        }, { once: true });
+            if (audio.paused && surpriseUnlocked) playSong();
+        });
     </script>
 
 </body>
