@@ -244,34 +244,6 @@
             .countdown-card { padding: 25px 15px; }
         }
 
-        /* ===== BEAT GLITCH EFFECT ===== */
-        .glitch-beat {
-            animation: glitchEffect 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) both !important;
-        }
-
-        @keyframes glitchEffect {
-            0% {
-                transform: translate(0);
-                filter: none;
-            }
-            25% {
-                transform: translate(-3px, 2px) skewX(-1.5deg);
-                filter: drop-shadow(2px 0 #ff4081) drop-shadow(-2px 0 #00e5ff);
-            }
-            50% {
-                transform: translate(3px, -2px) skewX(1.5deg);
-                filter: drop-shadow(-2px 0 #ff4081) drop-shadow(2px 0 #ffe082);
-            }
-            75% {
-                transform: translate(-2px, -1px);
-                filter: drop-shadow(1px 0 #e91e63);
-            }
-            100% {
-                transform: translate(0);
-                filter: none;
-            }
-        }
-
         /* ===== FLOATING RANDOM LYRICS ===== */
         .floating-lyric-tag {
             position: fixed;
@@ -1199,39 +1171,17 @@
         const overlay = document.getElementById('countdownOverlay');
         if (overlay) overlay.style.display = 'none';
 
-        // ===== AUDIO & BEAT GLITCH & FLOATING LYRICS =====
+        // ===== AUDIO & FLOATING LYRICS =====
         const audio = document.getElementById('birthdayAudio');
         const discIcon = document.getElementById('musicDiscIcon');
         const musicBtnText = document.getElementById('musicBtnText');
-        let audioCtx, analyser, dataArray, isAudioInitialized = false;
-
-        function initAudioAnalyzer() {
-            if (isAudioInitialized) return;
-            try {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                analyser = audioCtx.createAnalyser();
-                analyser.fftSize = 64;
-                const source = audioCtx.createMediaElementSource(audio);
-                source.connect(analyser);
-                analyser.connect(audioCtx.destination);
-                dataArray = new Uint8Array(analyser.frequencyBinCount);
-                isAudioInitialized = true;
-                detectBeat();
-            } catch (e) {
-                console.log("Web Audio initialized fallback", e);
-            }
-        }
 
         function playSong() {
-            if (audioCtx && audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
-            initAudioAnalyzer();
             audio.play().then(() => {
                 discIcon.style.animationPlayState = 'running';
                 musicBtnText.textContent = "Playing 🎵";
             }).catch(e => {
-                console.log("Autoplay was prevented, will play on user interaction:", e);
+                console.log("Autoplay waiting for user touch:", e);
             });
         }
 
@@ -1257,38 +1207,6 @@
                 playSong();
             }
         }, { once: true });
-
-        // Beat Detection Glitch on Container
-        const mainContainer = document.querySelector('.container');
-        let glitchCooldown = false;
-
-        function detectBeat() {
-            requestAnimationFrame(detectBeat);
-            if (!analyser || audio.paused) return;
-
-            analyser.getByteFrequencyData(dataArray);
-
-            // Lower bass frequencies (bass kick/drop)
-            let bassEnergy = 0;
-            for (let i = 0; i < 4; i++) {
-                bassEnergy += dataArray[i];
-            }
-            bassEnergy = bassEnergy / 4;
-
-            // Trigger glitch if heavy beat detected
-            if (bassEnergy > 195 && !glitchCooldown) {
-                glitchCooldown = true;
-                if (mainContainer) {
-                    mainContainer.classList.add('glitch-beat');
-                    setTimeout(() => {
-                        mainContainer.classList.remove('glitch-beat');
-                    }, 140);
-                }
-                setTimeout(() => {
-                    glitchCooldown = false;
-                }, 220);
-            }
-        }
 
         // Bilingual Hindi/English Exact Funzoa Song Lyrics
         const songLyrics = [
